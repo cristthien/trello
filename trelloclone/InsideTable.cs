@@ -53,7 +53,7 @@ namespace trelloclone
             btnAddNewList.FillColor = Color.FromArgb(224, 224, 224);
             btnAddNewList.Size = new Size(130, 30);
             btnAddNewList.Location = new Point(200, 10);
-            btnAddNewList.Image = Image.FromFile("C:\\Users\\Dell\\source\\repos\\trelloclone\\trelloclone\\Resources\\Add.png");
+            btnAddNewList.Image = Image.FromFile(Application.StartupPath + "/Resources/Add.png");
             btnAddNewList.ImageAlign = HorizontalAlignment.Left;
             btnAddNewList.ImageOffset = new Point(-10, 0);
             btnAddNewList.Text = "Thêm danh sách";
@@ -77,7 +77,7 @@ namespace trelloclone
             btnAddNewCard.FillColor = Color.FromArgb(224, 224, 224);
             btnAddNewCard.Size = new Size(100, 20);
             btnAddNewCard.Location = new Point(listOfBtn[listOfBtn.Count - 1].Location.X, listOfBtn[listOfBtn.Count - 1].Location.Y+40);
-            btnAddNewCard.Image = Image.FromFile("C:\\Users\\Dell\\source\\repos\\trelloclone\\trelloclone\\Resources\\Add.png");
+            btnAddNewCard.Image = Image.FromFile(Application.StartupPath + "/Resources/Add.png");
             btnAddNewCard.ImageAlign = HorizontalAlignment.Left;
             btnAddNewCard.ImageOffset = new Point(-10, 0);
             btnAddNewCard.Text = "Thêm thẻ";

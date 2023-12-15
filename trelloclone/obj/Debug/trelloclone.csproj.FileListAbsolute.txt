@@ -43,3 +43,19 @@ C:\Users\Dell\Source\Repos\trelloclone\trelloclone\bin\Debug\StoryCard.pdb
 C:\Users\Dell\Source\Repos\trelloclone\trelloclone\bin\Debug\StoryCard.dll.config
 C:\Users\Dell\Source\Repos\trelloclone\trelloclone\obj\Debug\trelloclone.csproj.CopyComplete
 C:\Users\Dell\Source\Repos\trelloclone\trelloclone\obj\Debug\WindowsFormsApp1.Card.resources
+C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\Trello\trelloclone\bin\Debug\trelloclone.exe.config
+C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\Trello\trelloclone\bin\Debug\trelloclone.exe
+C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\Trello\trelloclone\bin\Debug\trelloclone.pdb
+C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\Trello\trelloclone\bin\Debug\ui.dll
+C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\Trello\trelloclone\bin\Debug\ui.pdb
+C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\Trello\trelloclone\bin\Debug\StoryCard.pdb
+C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\Trello\trelloclone\bin\Debug\StoryCard.dll.config
+C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\Trello\trelloclone\obj\Debug\trelloclone.csproj.AssemblyReference.cache
+C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\Trello\trelloclone\obj\Debug\trelloclone.Form1.resources
+C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\Trello\trelloclone\obj\Debug\trelloclone.Properties.Resources.resources
+C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\Trello\trelloclone\obj\Debug\WindowsFormsApp1.Card.resources
+C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\Trello\trelloclone\obj\Debug\trelloclone.csproj.GenerateResource.cache
+C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\Trello\trelloclone\obj\Debug\trelloclone.csproj.CoreCompileInputs.cache
+C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\Trello\trelloclone\obj\Debug\trelloclone.csproj.CopyComplete
+C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\Trello\trelloclone\obj\Debug\trelloclone.exe
+C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\Trello\trelloclone\obj\Debug\trelloclone.pdb

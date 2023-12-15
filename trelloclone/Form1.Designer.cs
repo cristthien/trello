@@ -189,7 +189,7 @@ namespace trelloclone
             this.myTableButton.Location = new System.Drawing.Point(0, 0);
             this.myTableButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.myTableButton.Name = "myTableButton";
-            this.myTableButton.Size = new System.Drawing.Size(215, 50);
+            this.myTableButton.Size = new System.Drawing.Size(230, 50);
             this.myTableButton.TabIndex = 0;
             this.myTableButton.Text = "Các bảng của bạn\r\n";
             this.myTableButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
