@@ -1,4 +1,5 @@
-# Trelloclone
+# Process Tracker
+
 
 ### Git rules
 + Must not push code to branch master/main, push and create pull request from branch feature to branch develop.
@@ -8,7 +9,7 @@
 + Must not merge code.
 ### Git & Working flow
 #Step 1: Clone Project
-> git clone https://github.com/cristthien/trelloclone.git
+> git clone https://github.com/cristthien/processtracker.git
 
 #Step 2: Check local Git branch & remote Git branch.
 
