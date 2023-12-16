@@ -143,7 +143,7 @@ namespace trelloclone
         private static void DynamicButton_Click(object sender, EventArgs e)
         {
             Card a = new Card();
-
+            MessageBox.Show("hel");
             a.Show();
         }
     }
