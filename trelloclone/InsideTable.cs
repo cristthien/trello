@@ -37,7 +37,7 @@ namespace trelloclone
             BtnAddNewList.FillColor = Color.FromArgb(224, 224, 224);
             BtnAddNewList.Size = new Size(130, 30);
             BtnAddNewList.Location = new Point(200, 10);
-            BtnAddNewList.Image = Image.FromFile("C:\\Users\\Dell\\source\\repos\\trelloclone\\trelloclone\\Resources\\Add.png");
+            //BtnAddNewList.Image = Image.FromFile("C:\\Users\\Dell\\source\\repos\\trelloclone\\trelloclone\\Resources\\Add.png");
             BtnAddNewList.ImageAlign = HorizontalAlignment.Left;
             BtnAddNewList.ImageOffset = new Point(-10, 0);
             BtnAddNewList.Text = "Thêm danh sách";

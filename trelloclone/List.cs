@@ -76,7 +76,7 @@ namespace trelloclone
             BtnMoveToLeft.BackColor = Color.Transparent;
             BtnMoveToLeft.Location = new Point(230, 10);
             BtnMoveToLeft.Size = new Size(10, 10);
-            BtnMoveToLeft.Image = Image.FromFile("C:\\Users\\Dell\\source\\repos\\trelloclone\\trelloclone\\Resources\\backArrow.png");
+            //BtnMoveToLeft.Image = Image.FromFile("C:\\Users\\Dell\\source\\repos\\trelloclone\\trelloclone\\Resources\\backArrow.png");
             BtnMoveToLeft.ImageSize = new Size(10, 10);
             BtnMoveToLeft.ImageAlign = HorizontalAlignment.Center;
             BtnMoveToLeft.ImageOffset = new Point(1, 0);
@@ -92,7 +92,7 @@ namespace trelloclone
             BtnMoveToRight.BackColor = Color.Transparent;
             BtnMoveToRight.Location = new Point(243, 10);
             BtnMoveToRight.Size = new Size(10, 10);
-            BtnMoveToRight.Image = Image.FromFile("C:\\Users\\Dell\\source\\repos\\trelloclone\\trelloclone\\Resources\\forwardArrow.png");
+            //BtnMoveToRight.Image = Image.FromFile("C:\\Users\\Dell\\source\\repos\\trelloclone\\trelloclone\\Resources\\forwardArrow.png");
             BtnMoveToRight.ImageSize = new Size(10, 10);
             BtnMoveToRight.ImageAlign = HorizontalAlignment.Center;
             BtnMoveToRight.FillColor = Color.FromArgb(224, 224, 224);
@@ -184,7 +184,7 @@ namespace trelloclone
                 btnAddNewCard.FillColor = Color.FromArgb(224, 224, 224);
                 btnAddNewCard.Size = new Size(90, 20);
                 btnAddNewCard.Location = new Point(5, 80);
-                btnAddNewCard.Image = Image.FromFile("C:\\Users\\Dell\\source\\repos\\trelloclone\\trelloclone\\Resources\\Add.png");
+                //btnAddNewCard.Image = Image.FromFile("C:\\Users\\Dell\\source\\repos\\trelloclone\\trelloclone\\Resources\\Add.png");
                 btnAddNewCard.ImageAlign = HorizontalAlignment.Left;
                 btnAddNewCard.ImageOffset = new Point(-10, 0);
                 btnAddNewCard.Text = "Thêm thẻ";
@@ -210,7 +210,7 @@ namespace trelloclone
                 btnRemoveList.BackColor = Color.White;
                 btnRemoveList.FillColor = Color.FromArgb(224, 224, 224);
                 btnRemoveList.Size = new Size(120, 20);
-                btnRemoveList.Image = Image.FromFile("C:\\Users\\Dell\\source\\repos\\trelloclone\\trelloclone\\Resources\\delete.png");
+                //btnRemoveList.Image = Image.FromFile("C:\\Users\\Dell\\source\\repos\\trelloclone\\trelloclone\\Resources\\delete.png");
                 btnRemoveList.ImageAlign = HorizontalAlignment.Left;
                 btnRemoveList.Location = new Point(133, 80);
                 btnRemoveList.ImageOffset = new Point(-10, 0);

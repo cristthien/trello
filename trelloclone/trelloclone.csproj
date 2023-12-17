@@ -94,6 +94,12 @@
     <Compile Include="Card.designer.cs">
       <DependentUpon>Card.cs</DependentUpon>
     </Compile>
+    <Compile Include="TaoBang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TaoBang.Designer.cs">
+      <DependentUpon>TaoBang.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -110,6 +116,9 @@
     <EmbeddedResource Include="Card.resx">
       <DependentUpon>Card.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TaoBang.resx">
+      <DependentUpon>TaoBang.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -124,6 +133,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{72fc09d7-8fba-459d-8831-b1dac846d4d2}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{0d7525b9-91a3-45dc-aec4-7046b81c4314}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ui\ui.csproj">
       <Project>{53f142d9-8515-4f6d-be0c-bba42bf12e19}</Project>
       <Name>ui</Name>
@@ -160,6 +177,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Ảnh\icon\tab_close.png" />
+    <None Include="bin\Debug\Resources\myTablePanel.png" />
     <Content Include="Resources\Add.png" />
     <Content Include="Resources\backArrow.png" />
     <Content Include="Resources\delete.png" />
