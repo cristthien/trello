@@ -59,3 +59,22 @@ C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\Trello\trelloclone\obj\
 C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\Trello\trelloclone\obj\Debug\trelloclone.csproj.CopyComplete
 C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\Trello\trelloclone\obj\Debug\trelloclone.exe
 C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\Trello\trelloclone\obj\Debug\trelloclone.pdb
+C:\Users\Dell\source\repos\ProcessTracker\trelloclone\obj\Debug\trelloclone.csproj.AssemblyReference.cache
+C:\Users\Dell\source\repos\ProcessTracker\trelloclone\obj\Debug\trelloclone.Form1.resources
+C:\Users\Dell\source\repos\ProcessTracker\trelloclone\obj\Debug\trelloclone.Properties.Resources.resources
+C:\Users\Dell\source\repos\ProcessTracker\trelloclone\obj\Debug\WindowsFormsApp1.Card.resources
+C:\Users\Dell\source\repos\ProcessTracker\trelloclone\obj\Debug\trelloclone.csproj.GenerateResource.cache
+C:\Users\Dell\source\repos\ProcessTracker\trelloclone\obj\Debug\trelloclone.csproj.CoreCompileInputs.cache
+C:\Users\Dell\source\repos\ProcessTracker\trelloclone\obj\Debug\trelloclone.exe
+C:\Users\Dell\source\repos\ProcessTracker\trelloclone\obj\Debug\trelloclone.pdb
+C:\Users\Dell\source\repos\ProcessTracker\trelloclone\bin\Debug\trelloclone.exe.config
+C:\Users\Dell\source\repos\ProcessTracker\trelloclone\bin\Debug\trelloclone.exe
+C:\Users\Dell\source\repos\ProcessTracker\trelloclone\bin\Debug\trelloclone.pdb
+C:\Users\Dell\source\repos\ProcessTracker\trelloclone\bin\Debug\Guna.UI.dll
+C:\Users\Dell\source\repos\ProcessTracker\trelloclone\bin\Debug\Guna.UI2.dll
+C:\Users\Dell\source\repos\ProcessTracker\trelloclone\bin\Debug\StoryCard.dll
+C:\Users\Dell\source\repos\ProcessTracker\trelloclone\bin\Debug\ui.dll
+C:\Users\Dell\source\repos\ProcessTracker\trelloclone\bin\Debug\ui.pdb
+C:\Users\Dell\source\repos\ProcessTracker\trelloclone\bin\Debug\StoryCard.pdb
+C:\Users\Dell\source\repos\ProcessTracker\trelloclone\bin\Debug\StoryCard.dll.config
+C:\Users\Dell\source\repos\ProcessTracker\trelloclone\obj\Debug\trelloclone.csproj.CopyComplete

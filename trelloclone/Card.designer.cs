@@ -30,12 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Card));
-            this.pnl_Main = new System.Windows.Forms.Panel();
-            this.pnl_MoTa = new System.Windows.Forms.Panel();
+            this.pnlMain = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.rTxtBxTitle = new System.Windows.Forms.RichTextBox();
+            this.pnlMoTa = new System.Windows.Forms.Panel();
             this.tbxThemMoTaChiTiet = new Guna.UI2.WinForms.Guna2TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.pnl_HoatDong = new System.Windows.Forms.Panel();
+            this.pnlHoatDong = new System.Windows.Forms.Panel();
             this.tbxVietBinhLuan = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -51,44 +53,67 @@
             this.btnThanhVien = new Guna.UI2.WinForms.Guna2Button();
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
-            this.pnl_Main.SuspendLayout();
-            this.pnl_MoTa.SuspendLayout();
-            this.pnl_HoatDong.SuspendLayout();
+            this.btnDeleteCard = new Guna.UI2.WinForms.Guna2Button();
+            this.pnlMain.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.pnlMoTa.SuspendLayout();
+            this.pnlHoatDong.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).BeginInit();
             this.pnlFunctions.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pnl_Main
+            // pnlMain
             // 
-            this.pnl_Main.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pnl_Main.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pnl_Main.Controls.Add(this.pnl_MoTa);
-            this.pnl_Main.Controls.Add(this.pnl_HoatDong);
-            this.pnl_Main.Controls.Add(this.pnlFunctions);
-            this.pnl_Main.Controls.Add(this.btnClose);
-            this.pnl_Main.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_Main.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.pnl_Main.Location = new System.Drawing.Point(0, 0);
-            this.pnl_Main.Name = "pnl_Main";
-            this.pnl_Main.Size = new System.Drawing.Size(482, 550);
-            this.pnl_Main.TabIndex = 0;
-            this.pnl_Main.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            this.pnlMain.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pnlMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pnlMain.Controls.Add(this.panel1);
+            this.pnlMain.Controls.Add(this.pnlMoTa);
+            this.pnlMain.Controls.Add(this.pnlHoatDong);
+            this.pnlMain.Controls.Add(this.pnlFunctions);
+            this.pnlMain.Controls.Add(this.btnClose);
+            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMain.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.pnlMain.Location = new System.Drawing.Point(0, 0);
+            this.pnlMain.Name = "pnlMain";
+            this.pnlMain.Size = new System.Drawing.Size(482, 586);
+            this.pnlMain.TabIndex = 0;
+            this.pnlMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
-            // pnl_MoTa
+            // panel1
             // 
-            this.pnl_MoTa.Controls.Add(this.tbxThemMoTaChiTiet);
-            this.pnl_MoTa.Controls.Add(this.label8);
-            this.pnl_MoTa.Controls.Add(this.label2);
-            this.pnl_MoTa.Location = new System.Drawing.Point(12, 37);
-            this.pnl_MoTa.Name = "pnl_MoTa";
-            this.pnl_MoTa.Size = new System.Drawing.Size(458, 75);
-            this.pnl_MoTa.TabIndex = 35;
+            this.panel1.Controls.Add(this.rTxtBxTitle);
+            this.panel1.Location = new System.Drawing.Point(12, 37);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(450, 57);
+            this.panel1.TabIndex = 36;
+            // 
+            // rTxtBxTitle
+            // 
+            this.rTxtBxTitle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.rTxtBxTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rTxtBxTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rTxtBxTitle.Location = new System.Drawing.Point(6, 6);
+            this.rTxtBxTitle.Name = "rTxtBxTitle";
+            this.rTxtBxTitle.Size = new System.Drawing.Size(444, 51);
+            this.rTxtBxTitle.TabIndex = 0;
+            this.rTxtBxTitle.Text = "";
+            this.rTxtBxTitle.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
+            // 
+            // pnlMoTa
+            // 
+            this.pnlMoTa.Controls.Add(this.tbxThemMoTaChiTiet);
+            this.pnlMoTa.Controls.Add(this.label8);
+            this.pnlMoTa.Controls.Add(this.label2);
+            this.pnlMoTa.Location = new System.Drawing.Point(12, 119);
+            this.pnlMoTa.Name = "pnlMoTa";
+            this.pnlMoTa.Size = new System.Drawing.Size(458, 75);
+            this.pnlMoTa.TabIndex = 35;
             // 
             // tbxThemMoTaChiTiet
             // 
             this.tbxThemMoTaChiTiet.BorderRadius = 5;
             this.tbxThemMoTaChiTiet.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tbxThemMoTaChiTiet.DefaultText = "Thêm mô tả chi tiết ...";
+            this.tbxThemMoTaChiTiet.DefaultText = "";
             this.tbxThemMoTaChiTiet.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.tbxThemMoTaChiTiet.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.tbxThemMoTaChiTiet.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
@@ -101,11 +126,11 @@
             this.tbxThemMoTaChiTiet.Multiline = true;
             this.tbxThemMoTaChiTiet.Name = "tbxThemMoTaChiTiet";
             this.tbxThemMoTaChiTiet.PasswordChar = '\0';
-            this.tbxThemMoTaChiTiet.PlaceholderText = "";
+            this.tbxThemMoTaChiTiet.PlaceholderText = "Thêm mô tả ...";
             this.tbxThemMoTaChiTiet.SelectedText = "";
             this.tbxThemMoTaChiTiet.Size = new System.Drawing.Size(419, 43);
             this.tbxThemMoTaChiTiet.TabIndex = 31;
-            this.tbxThemMoTaChiTiet.Leave += new System.EventHandler(this.tbxThemMoTaChiTiet_Leave);
+            this.tbxThemMoTaChiTiet.TextChanged += new System.EventHandler(this.tbxThemMoTaChiTiet_TextChanged);
             this.tbxThemMoTaChiTiet.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tbxThemMoTaChiTiet_MouseClick);
             // 
             // label8
@@ -126,23 +151,23 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "Mô tả";
             // 
-            // pnl_HoatDong
+            // pnlHoatDong
             // 
-            this.pnl_HoatDong.Controls.Add(this.tbxVietBinhLuan);
-            this.pnl_HoatDong.Controls.Add(this.guna2CirclePictureBox1);
-            this.pnl_HoatDong.Controls.Add(this.label5);
-            this.pnl_HoatDong.Controls.Add(this.label1);
-            this.pnl_HoatDong.Location = new System.Drawing.Point(12, 158);
-            this.pnl_HoatDong.Name = "pnl_HoatDong";
-            this.pnl_HoatDong.Size = new System.Drawing.Size(458, 77);
-            this.pnl_HoatDong.TabIndex = 34;
+            this.pnlHoatDong.Controls.Add(this.tbxVietBinhLuan);
+            this.pnlHoatDong.Controls.Add(this.guna2CirclePictureBox1);
+            this.pnlHoatDong.Controls.Add(this.label5);
+            this.pnlHoatDong.Controls.Add(this.label1);
+            this.pnlHoatDong.Location = new System.Drawing.Point(12, 226);
+            this.pnlHoatDong.Name = "pnlHoatDong";
+            this.pnlHoatDong.Size = new System.Drawing.Size(458, 77);
+            this.pnlHoatDong.TabIndex = 34;
             // 
             // tbxVietBinhLuan
             // 
             this.tbxVietBinhLuan.BorderRadius = 5;
             this.tbxVietBinhLuan.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
             this.tbxVietBinhLuan.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.tbxVietBinhLuan.DefaultText = "Viết bình luận ...";
+            this.tbxVietBinhLuan.DefaultText = "";
             this.tbxVietBinhLuan.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.tbxVietBinhLuan.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.tbxVietBinhLuan.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
@@ -155,11 +180,11 @@
             this.tbxVietBinhLuan.Multiline = true;
             this.tbxVietBinhLuan.Name = "tbxVietBinhLuan";
             this.tbxVietBinhLuan.PasswordChar = '\0';
-            this.tbxVietBinhLuan.PlaceholderText = "";
+            this.tbxVietBinhLuan.PlaceholderText = "Thêm hoạt động ...";
             this.tbxVietBinhLuan.SelectedText = "";
             this.tbxVietBinhLuan.Size = new System.Drawing.Size(413, 41);
             this.tbxVietBinhLuan.TabIndex = 30;
-            this.tbxVietBinhLuan.Leave += new System.EventHandler(this.tbxVietBinhLuan_Leave);
+            this.tbxVietBinhLuan.TextChanged += new System.EventHandler(this.tbxVietBinhLuan_TextChanged);
             this.tbxVietBinhLuan.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tbxVietBinhLuan_MouseClick);
             // 
             // guna2CirclePictureBox1
@@ -192,6 +217,7 @@
             // 
             // pnlFunctions
             // 
+            this.pnlFunctions.Controls.Add(this.btnDeleteCard);
             this.pnlFunctions.Controls.Add(this.label7);
             this.pnlFunctions.Controls.Add(this.label6);
             this.pnlFunctions.Controls.Add(this.btnTaoMau);
@@ -200,9 +226,9 @@
             this.pnlFunctions.Controls.Add(this.btnViecCanLam);
             this.pnlFunctions.Controls.Add(this.btnNhan);
             this.pnlFunctions.Controls.Add(this.btnThanhVien);
-            this.pnlFunctions.Location = new System.Drawing.Point(12, 294);
+            this.pnlFunctions.Location = new System.Drawing.Point(12, 332);
             this.pnlFunctions.Name = "pnlFunctions";
-            this.pnlFunctions.Size = new System.Drawing.Size(458, 203);
+            this.pnlFunctions.Size = new System.Drawing.Size(458, 242);
             this.pnlFunctions.TabIndex = 33;
             // 
             // label7
@@ -367,6 +393,24 @@
             this.guna2BorderlessForm1.DragForm = false;
             this.guna2BorderlessForm1.TransparentWhileDrag = true;
             // 
+            // btnDeleteCard
+            // 
+            this.btnDeleteCard.BorderRadius = 5;
+            this.btnDeleteCard.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnDeleteCard.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnDeleteCard.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnDeleteCard.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnDeleteCard.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnDeleteCard.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnDeleteCard.ForeColor = System.Drawing.Color.Black;
+            this.btnDeleteCard.Location = new System.Drawing.Point(359, 208);
+            this.btnDeleteCard.Name = "btnDeleteCard";
+            this.btnDeleteCard.Size = new System.Drawing.Size(81, 22);
+            this.btnDeleteCard.TabIndex = 26;
+            this.btnDeleteCard.Text = "Xóa thẻ";
+            this.btnDeleteCard.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnDeleteCard.Click += new System.EventHandler(this.btnDeleteCard_Click);
+            // 
             // Card
             // 
             this.AllowDrop = true;
@@ -375,19 +419,20 @@
             this.AutoScroll = true;
             this.CancelButton = this.btnClose;
             this.CausesValidation = false;
-            this.ClientSize = new System.Drawing.Size(482, 550);
-            this.Controls.Add(this.pnl_Main);
+            this.ClientSize = new System.Drawing.Size(482, 586);
+            this.Controls.Add(this.pnlMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Card";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StoryCard";
-            this.pnl_Main.ResumeLayout(false);
-            this.pnl_MoTa.ResumeLayout(false);
-            this.pnl_MoTa.PerformLayout();
-            this.pnl_HoatDong.ResumeLayout(false);
-            this.pnl_HoatDong.PerformLayout();
+            this.pnlMain.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.pnlMoTa.ResumeLayout(false);
+            this.pnlMoTa.PerformLayout();
+            this.pnlHoatDong.ResumeLayout(false);
+            this.pnlHoatDong.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).EndInit();
             this.pnlFunctions.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -396,7 +441,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel pnl_Main;
+        private System.Windows.Forms.Panel pnlMain;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label8;
@@ -415,7 +460,10 @@
         private Guna.UI2.WinForms.Guna2Button btnViecCanLam;
         private Guna.UI2.WinForms.Guna2Button btnNhan;
         private Guna.UI2.WinForms.Guna2Button btnThanhVien;
-        private System.Windows.Forms.Panel pnl_HoatDong;
-        private System.Windows.Forms.Panel pnl_MoTa;
+        private System.Windows.Forms.Panel pnlHoatDong;
+        private System.Windows.Forms.Panel pnlMoTa;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RichTextBox rTxtBxTitle;
+        private Guna.UI2.WinForms.Guna2Button btnDeleteCard;
     }
 }

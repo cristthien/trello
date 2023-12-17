@@ -71,6 +71,7 @@ namespace trelloclone
             this.WorkSpacePanel.Name = "WorkSpacePanel";
             this.WorkSpacePanel.Size = new System.Drawing.Size(1621, 800);
             this.WorkSpacePanel.TabIndex = 2;
+            this.WorkSpacePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.WorkSpacePanel_Paint);
             // 
             // sizeBar
             // 

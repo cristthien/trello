@@ -29,6 +29,8 @@ namespace trelloclone
         private RJButton iconButton;
         bool sidebarExpand = true;
 
+        private List<InsideTable> listOfTableSpace = new List<InsideTable>();
+
         public Panel WorkSpace { get => workSpace; set => workSpace = value; }
         public RJButton MyTableButton { get => myTableButton; set => myTableButton = value; }
         public List<RJButton> Buttons { get => buttons; set => buttons = value; }
@@ -234,13 +236,16 @@ namespace trelloclone
                 Buttons.Add(newButton); //Nhet button Table vua tao vao trong mang de quan ly
                 OtpBtn.Add(optBtn);
 
-                getTable(sender, e);
+                InsideTable createdTable = getTable(sender, e);
+                listOfTableSpace.Add(createdTable);
             }
         }
 
         private void OptBtn_Click(object sender, EventArgs e)
         {
             RJButton btn = (RJButton)sender;
+            int index = buttons.IndexOf(btn);
+            MessageBox.Show($"Opt button: {index}");
             Guna2GradientButton deleteTableButton = new Guna2GradientButton()
             {
                 Text = "Delete Table",
@@ -276,7 +281,7 @@ namespace trelloclone
         }
 
         private void DeleteTableButton_Click(object sender, EventArgs e)
-        {
+        {         
             Guna2GradientButton btn = (Guna2GradientButton)sender;
             DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa bảng này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
@@ -287,10 +292,12 @@ namespace trelloclone
             }
             mainForm.Controls.Remove(btn);
         }
-        private void getTable(object sender, EventArgs e)
+        private InsideTable getTable(object sender, EventArgs e)
         {
             InsideTable Table1 = new InsideTable(this.mainForm, this.workSpace, this.tableSpace);
-            
+                
+
+            return Table1;
         }
     }
 }
