@@ -28,3 +28,9 @@ C:\Users\Dell\source\repos\ProcessTracker\ui\obj\Debug\ui.csproj.AssemblyReferen
 C:\Users\Dell\source\repos\ProcessTracker\ui\obj\Debug\ui.csproj.CoreCompileInputs.cache
 C:\Users\Dell\source\repos\ProcessTracker\ui\obj\Debug\ui.dll
 C:\Users\Dell\source\repos\ProcessTracker\ui\obj\Debug\ui.pdb
+C:\Users\Dell\Desktop\ProcessTracker\ui\bin\Debug\ui.dll
+C:\Users\Dell\Desktop\ProcessTracker\ui\bin\Debug\ui.pdb
+C:\Users\Dell\Desktop\ProcessTracker\ui\obj\Debug\ui.csproj.AssemblyReference.cache
+C:\Users\Dell\Desktop\ProcessTracker\ui\obj\Debug\ui.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Desktop\ProcessTracker\ui\obj\Debug\ui.dll
+C:\Users\Dell\Desktop\ProcessTracker\ui\obj\Debug\ui.pdb

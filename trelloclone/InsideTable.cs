@@ -163,6 +163,7 @@ namespace trelloclone
         }
         private static void DynamicButton_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("e");
             Guna2Button clickedButton = sender as Guna2Button;
             list form = list.FindForm(clickedButton);
 
