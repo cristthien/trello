@@ -97,3 +97,8 @@ C:\Users\Dell\Desktop\ProcessTracker\trelloclone\obj\Debug\trelloclone.csproj.Co
 C:\Users\Dell\Desktop\ProcessTracker\trelloclone\obj\Debug\trelloclone.csproj.CopyComplete
 C:\Users\Dell\Desktop\ProcessTracker\trelloclone\obj\Debug\trelloclone.exe
 C:\Users\Dell\Desktop\ProcessTracker\trelloclone\obj\Debug\trelloclone.pdb
+C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\trello\trelloclone\obj\Debug\trelloclone.TaoBang.resources
+C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\trello\trelloclone\bin\Debug\BLL.dll
+C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\trello\trelloclone\bin\Debug\DTO.dll
+C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\trello\trelloclone\bin\Debug\BLL.pdb
+C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\trello\trelloclone\bin\Debug\DTO.pdb

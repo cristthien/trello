@@ -20,9 +20,8 @@ namespace trelloclone
         private Panel tableSpace;
         private List<RJButton> buttons;
         private List<RJButton> otpBtn;
-        private RJButton myTableButton;
+        public RJButton myTableButton;
         private Panel textBoxPanel;
-        private string textBoxContent = "";
         //MenuSpace
         private Timer sideBarTimer;
         private FlowLayoutPanel sideBar;
@@ -36,10 +35,11 @@ namespace trelloclone
         public List<RJButton> Buttons { get => buttons; set => buttons = value; }
         public Panel TableSpace { get => tableSpace; set => tableSpace = value; }
         public List<RJButton> OtpBtn { get => otpBtn; set => otpBtn = value; }
+        public Form1 MainForm { get => mainForm; set => mainForm = value; }
 
         public EventHandlers(Form1 form, Panel WorkSpace, Panel TableSpace, RJButton myTableButton, Timer timer, FlowLayoutPanel sideBar, RJButton iconButton)
         {
-            this.mainForm = form;
+            this.MainForm = form;
             //WorkSpace
             this.workSpace = WorkSpace;
             //TableSpace
@@ -86,162 +86,18 @@ namespace trelloclone
             }    
         }
 
+        //Khi click vào nút "các bảng của bạn"
         public void myTableButton_Click(object sender, EventArgs e)
         {
             RJButton btn = sender as RJButton;
-            CreateTextBox(btn);
+            TaoBang taoBang = new TaoBang(this)
+            {
+                Location = new Point(TableSpace.Location.X + TableSpace.Width, TableSpace.Location.Y + 100),
+            };
+            taoBang.ShowDialog();
         }
 
-        private void CreateTextBox(RJButton btn)
-        {
-            if (textBoxPanel != null)
-            {
-                WorkSpace.Controls.Remove(textBoxPanel);
-                textBoxContent = "";
-            }
-            textBoxPanel = new Panel()
-            {
-                Width = Const.panelTextBoxWidth,
-                Height = Const.panelTextBoxHeight,
-                Location = new Point(Const.myTableWidth, 0),
-                BackgroundImage = Image.FromFile(Application.StartupPath + "/Resources/myTablePanel.png"),
-                BackgroundImageLayout = ImageLayout.Stretch,
-                BackColor = Color.Transparent
-            };
-            WorkSpace.Controls.Add(textBoxPanel);
-            textBoxPanel.BringToFront();
-
-            Label headLabel = new Label()
-            {
-                Text = "Tạo Bảng",
-                Width = Const.panelTextBoxWidth,
-                Location = new Point(0, 25),
-                TextAlign = ContentAlignment.MiddleCenter,
-                Font = new Font("Microsoft Sans Serif", 12, FontStyle.Bold)
-            };
-
-            Label titleLabel = new Label()
-            {
-                Text = "Tiêu đề bảng",
-                Width = Const.panelTextBoxWidth,
-                Font = new Font("Microsoft Sans Serif", 10, FontStyle.Bold),
-                TextAlign = ContentAlignment.MiddleLeft,
-                Location = new Point(25, textBoxPanel.Location.Y + 75),
-            };
-
-            TextBox text = new TextBox()
-            {
-                Width = Const.panelTextBoxWidth - 50,
-                Location = new Point(25, textBoxPanel.Location.Y + 100),
-            };
-            text.TextChanged += Text_TextChanged;
-
-            Label noteLineLabel = new Label()
-            {
-                Text = "Tiêu đề bảng là bắt buộc",
-                Width = Const.panelTextBoxWidth,
-                Location = new Point(25, text.Location.Y + text.Height + 10),
-            };
-
-            RJButton newBtn = new RJButton()
-            {
-                Width = Const.panelTextBoxWidth - 50,
-                Height = 50,
-                BackColor = Color.Gray,
-                Location = new Point(25, textBoxPanel.Location.Y + (textBoxPanel.Height/3)*2),
-                Text = "Tạo Bảng Mới",
-                Font = new Font("Microsoft Sans Serif", 12, FontStyle.Bold)
-            };
-            newBtn.Click += CreateTable_Click;
-
-            RJButton exitButton = new RJButton()
-            {
-                Width = Const.exitBtnWidth,
-                Height = Const.exitBtnWidth,
-                Location = new Point(textBoxPanel.Width - Const.exitBtnWidth - 15, 15),
-                BackgroundColor = Color.Transparent,
-                BorderRadius = 10,
-                BackgroundImage = Image.FromFile(Application.StartupPath + "/Resources/close.png"),
-                BackgroundImageLayout = ImageLayout.Stretch,
-            };
-            exitButton.Click += ExitButton_Click;
-
-            textBoxPanel.Controls.Add(headLabel);
-            textBoxPanel.Controls.Add(titleLabel);
-            textBoxPanel.Controls.Add(text);
-            textBoxPanel.Controls.Add(noteLineLabel);
-            textBoxPanel.Controls.Add(newBtn);
-            textBoxPanel.Controls.Add(exitButton);
-            exitButton.BringToFront();
-
-        }
-        private void ExitButton_Click(object sender, EventArgs e)
-        {
-            WorkSpace.Controls.Remove(textBoxPanel);
-            textBoxContent = "";
-        }
-        private void Text_TextChanged(object sender, EventArgs e)
-        {
-            // Lưu nội dung của TextBox vào biến
-            textBoxContent = ((TextBox)sender).Text;
-        }
-
-        private void CreateTable_Click(object sender, EventArgs e)
-        {
-            if (textBoxContent == "")
-            {
-                MessageBox.Show("Tiêu đề không được để trống");
-            }
-            else
-            {
-                RJButton newButton = new RJButton()
-                {
-                    Width = myTableButton.Width,
-                    Height = myTableButton.Height,
-                    BorderRadius = 0,
-                    BorderSize = 0,
-                    BackColor = Color.Transparent,
-                    Text = textBoxContent,
-                    Font = new Font("Microsoft Sans Serif", 10,FontStyle.Bold),
-                    TextAlign = ContentAlignment.MiddleLeft,
-                    Tag = Buttons.Count
-                };
-                if (Buttons.Count == 0)
-                {
-                    newButton.Location = new Point(myTableButton.Location.X, myTableButton.Location.Y + myTableButton.Height);
-                }
-                else
-                {
-                    int lastIndex = Buttons.Count - 1;
-                    newButton.Location = new Point(Buttons[lastIndex].Location.X, Buttons[lastIndex].Location.Y + Buttons[lastIndex].Height);
-                }
-                TableSpace.Controls.Add(newButton);
-                RJButton optBtn = new RJButton()
-                {
-                    Width = 25,
-                    Height = 20,
-                    BorderRadius = 10,
-                    BorderSize = 0,
-                    Location = new Point(newButton.Location.X + newButton.Width - 30, newButton.Location.Y + 10),
-                    BackColor= Color.Transparent,
-                    BackgroundImage = Image.FromFile(Application.StartupPath + "/Resources/....png"),
-                    BackgroundImageLayout = ImageLayout.Stretch,
-                    Tag = newButton.Tag
-                };
-                optBtn.Click += OptBtn_Click;
-                TableSpace.Controls.Add(optBtn);
-                optBtn.BringToFront();
-                WorkSpace.Controls.Remove(textBoxPanel);
-                textBoxContent = "";
-                Buttons.Add(newButton); //Nhet button Table vua tao vao trong mang de quan ly
-                OtpBtn.Add(optBtn);
-
-                InsideTable createdTable = getTable(sender, e);
-                listOfTableSpace.Add(createdTable);
-            }
-        }
-
-        private void OptBtn_Click(object sender, EventArgs e)
+        public void OptBtn_Click(object sender, EventArgs e)
         {
             RJButton btn = (RJButton)sender;
             int index = buttons.IndexOf(btn);
@@ -254,7 +110,7 @@ namespace trelloclone
                 BackColor = Color.Transparent,
                 Tag = btn.Tag,
             };
-            mainForm.Controls.Add(deleteTableButton);
+            MainForm.Controls.Add(deleteTableButton);
             deleteTableButton.BringToFront();
             deleteTableButton.Click += DeleteTableButton_Click;
         }
@@ -290,11 +146,11 @@ namespace trelloclone
                 TableSpace.Controls.Remove(OtpBtn[Convert.ToInt32(btn.Tag)]);
                 Update_Location_After_Remove(Convert.ToInt32(btn.Tag));
             }
-            mainForm.Controls.Remove(btn);
+            MainForm.Controls.Remove(btn);
         }
         private InsideTable getTable(object sender, EventArgs e)
         {
-            InsideTable Table1 = new InsideTable(this.mainForm, this.workSpace, this.tableSpace);
+            InsideTable Table1 = new InsideTable(this.MainForm, this.workSpace, this.tableSpace);
                 
 
             return Table1;
