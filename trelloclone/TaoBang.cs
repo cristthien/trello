@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DTO;
 using BLL;
 using ui;
+using Guna.UI2.WinForms;
 
 namespace trelloclone
 {
@@ -40,16 +41,15 @@ namespace trelloclone
             }
             else
             {
-                RJButton newButton = new RJButton()
+                //Table button
+                Guna2Button newButton = new Guna2Button()
                 {
                     Width = eventHandlers.myTableButton.Width,
                     Height = eventHandlers.myTableButton.Height,
                     BorderRadius = 0,
-                    BorderSize = 0,
                     BackColor = Color.Transparent,
                     Text = getName,
                     Font = new Font("Microsoft Sans Serif", 10, FontStyle.Bold),
-                    TextAlign = ContentAlignment.MiddleLeft,
                     Tag = eventHandlers.Buttons.Count
                 };
                 if (eventHandlers.Buttons.Count == 0)
@@ -62,16 +62,35 @@ namespace trelloclone
                     newButton.Location = new Point(eventHandlers.Buttons[lastIndex].Location.X, eventHandlers.Buttons[lastIndex].Location.Y + eventHandlers.Buttons[lastIndex].Height);
                 }
                 eventHandlers.TableSpace.Controls.Add(newButton);
-                RJButton optBtn = new RJButton()
-                {
-                    Width = 25,
-                    Height = 20,
+
+                //Mark Button
+                Guna2Button markBtn = new Guna2Button() {
+                    Width = 20,
+                    Height = 15,
                     BorderRadius = 10,
-                    BorderSize = 0,
-                    Location = new Point(newButton.Location.X + newButton.Width - 30, newButton.Location.Y + 10),
+                    Location = new Point(newButton.Location.X + newButton.Width - 25, newButton.Location.Y + 10),
+                    BackColor = Color.Transparent,
+                    BackgroundImage = Image.FromFile(Application.StartupPath + "/Resources/star_empty.png"),
+                    BackgroundImageLayout = ImageLayout.Stretch,
+                    FillColor = Color.Transparent,
+                    Tag = newButton.Tag
+                };
+                eventHandlers.TableSpace.Controls.Add(markBtn);
+                markBtn.BringToFront();
+                markBtn.Click += eventHandlers.MarkBtn_Click;
+
+
+                //Option button
+                Guna2Button optBtn = new Guna2Button()
+                {
+                    Width = 20,
+                    Height = 15,
+                    BorderRadius = 10,
+                    Location = new Point(markBtn.Location.X - markBtn.Width - 5, markBtn.Location.Y),
                     BackColor = Color.Transparent,
                     BackgroundImage = Image.FromFile(Application.StartupPath + "/Resources/....png"),
                     BackgroundImageLayout = ImageLayout.Stretch,
+                    FillColor = Color.Transparent,
                     Tag = newButton.Tag
                 };
                 optBtn.Click += eventHandlers.OptBtn_Click;
@@ -80,12 +99,19 @@ namespace trelloclone
                 eventHandlers.WorkSpace.Controls.Remove(textBoxPanel);
                 eventHandlers.Buttons.Add(newButton); //Nhet button Table vua tao vao trong mang de quan ly
                 eventHandlers.OtpBtn.Add(optBtn);
-                this.Hide();
+                eventHandlers.MarkBtns.Add(markBtn);
+                
+
+
+
+                this.Hide(); //Tao xong thi form nay se bi an di
+
 
                 InsideTable createdTable = getTable(sender, e);
                 listOfTableSpace.Add(createdTable);
             }
         }
+
         private InsideTable getTable(object sender, EventArgs e)
         {
             InsideTable Table1 = new InsideTable(eventHandlers.MainForm, eventHandlers.WorkSpace, eventHandlers.TableSpace);
