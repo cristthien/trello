@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,26 +20,28 @@ namespace trelloclone
         private Panel workSpace;
         //TableSpace
         private Panel tableSpace;
-        private List<RJButton> buttons;
-        private List<RJButton> otpBtn;
-        public RJButton myTableButton;
+        private List<Guna2Button> buttons;
+        private List<Guna2Button> optBtn;
+        private List<Guna2Button> markBtns;
+        public Guna2Button myTableButton;
         private Panel textBoxPanel;
         //MenuSpace
         private Timer sideBarTimer;
         private FlowLayoutPanel sideBar;
-        private RJButton iconButton;
+        private Guna2Button iconButton;
         bool sidebarExpand = true;
 
         private List<InsideTable> listOfTableSpace = new List<InsideTable>();
 
         public Panel WorkSpace { get => workSpace; set => workSpace = value; }
-        public RJButton MyTableButton { get => myTableButton; set => myTableButton = value; }
-        public List<RJButton> Buttons { get => buttons; set => buttons = value; }
+        public Guna2Button MyTableButton { get => myTableButton; set => myTableButton = value; }
+        public List<Guna2Button> Buttons { get => buttons; set => buttons = value; }
         public Panel TableSpace { get => tableSpace; set => tableSpace = value; }
-        public List<RJButton> OtpBtn { get => otpBtn; set => otpBtn = value; }
+        public List<Guna2Button> OptBtn { get => optBtn; set => optBtn = value; }
         public Form1 MainForm { get => mainForm; set => mainForm = value; }
+        public List<Guna2Button> MarkBtns { get => markBtns; set => markBtns = value; }
 
-        public EventHandlers(Form1 form, Panel WorkSpace, Panel TableSpace, RJButton myTableButton, Timer timer, FlowLayoutPanel sideBar, RJButton iconButton)
+        public EventHandlers(Form1 form, Panel WorkSpace, Panel TableSpace, Guna2Button myTableButton, Timer timer, FlowLayoutPanel sideBar, Guna2Button iconButton)
         {
             this.MainForm = form;
             //WorkSpace
@@ -46,8 +50,9 @@ namespace trelloclone
             this.tableSpace = TableSpace;
             this.myTableButton = myTableButton;
             this.myTableButton.Click += myTableButton_Click;
-            Buttons = new List<RJButton>();
-            OtpBtn = new List<RJButton>();
+            Buttons = new List<Guna2Button>();
+            OptBtn = new List<Guna2Button>();
+            MarkBtns = new List<Guna2Button>();
             //MenuSpace
             this.sideBarTimer = timer;
             this.sideBarTimer.Interval = 1;
@@ -89,19 +94,60 @@ namespace trelloclone
         //Khi click vào nút "các bảng của bạn"
         public void myTableButton_Click(object sender, EventArgs e)
         {
-            RJButton btn = sender as RJButton;
-            TaoBang taoBang = new TaoBang(this)
-            {
-                Location = new Point(TableSpace.Location.X + TableSpace.Width, TableSpace.Location.Y + 100),
-            };
+            Guna2Button btn = sender as Guna2Button;
+            TaoBang taoBang = new TaoBang(this);
+            taoBang.Location = new Point(300, 100);
             taoBang.ShowDialog();
+        }
+
+        // Hàm so sánh hai hình ảnh
+        private bool AreImagesEqual(Image image1, Image image2)
+        {
+            if (image1 == null || image2 == null)
+            {
+                return false;
+            }
+
+            using (MemoryStream memoryStream1 = new MemoryStream(), memoryStream2 = new MemoryStream())
+            {
+                image1.Save(memoryStream1, ImageFormat.Png);
+                image2.Save(memoryStream2, ImageFormat.Png);
+
+                return memoryStream1.ToArray().SequenceEqual(memoryStream2.ToArray());
+            }
+        }
+
+        public void NewButton_Click(object sender, EventArgs e)
+        {
+            Guna2Button btn = (Guna2Button)sender;
+            for (int i = 0; i < Buttons.Count; i++) 
+            {
+                if (OptBtn[i].Visible == true)
+                {
+                    OptBtn[i].Visible = false;
+                    MarkBtns[i].Visible = false;
+                }
+            }    
+            OptBtn[Convert.ToInt32(btn.Tag)].Visible = true;
+            MarkBtns[Convert.ToInt32(btn.Tag)].Visible = true;
+        }
+
+        public void MarkBtn_Click(object sender, EventArgs e)
+        {
+            Guna2Button btn = (Guna2Button)sender;
+            Image expectedImage = Image.FromFile(Application.StartupPath + "/Resources/star_filled.png");
+            if (AreImagesEqual(btn.BackgroundImage, expectedImage))
+            {
+                btn.BackgroundImage = Image.FromFile(Application.StartupPath + "/Resources/star_empty.png");
+            }
+            else
+                btn.BackgroundImage = Image.FromFile(Application.StartupPath + "/Resources/star_filled.png");
+            
         }
 
         public void OptBtn_Click(object sender, EventArgs e)
         {
-            RJButton btn = (RJButton)sender;
-            int index = buttons.IndexOf(btn);
-            MessageBox.Show($"Opt button: {index}");
+            Guna2Button btn = (Guna2Button)sender;
             Guna2GradientButton deleteTableButton = new Guna2GradientButton()
             {
                 Text = "Delete Table",
@@ -120,7 +166,7 @@ namespace trelloclone
             if (index == Buttons.Count - 1)
             {
                 Buttons.RemoveAt(Convert.ToInt32(index));
-                OtpBtn.RemoveAt(Convert.ToInt32(index));
+                OptBtn.RemoveAt(Convert.ToInt32(index));
             }    
             else 
             {
@@ -128,11 +174,11 @@ namespace trelloclone
                 {
                     Buttons[i].Location = Buttons[i - 1].Location;
                     Buttons[i].Tag = Buttons[i - 1].Tag;
-                    OtpBtn[i].Location = OtpBtn[i - 1].Location;
-                    OtpBtn[i].Tag = OtpBtn[i - 1].Tag;
+                    OptBtn[i].Location = OptBtn[i - 1].Location;
+                    OptBtn[i].Tag = OptBtn[i - 1].Tag;
                 }
                 Buttons.RemoveAt(Convert.ToInt32(index));
-                OtpBtn.RemoveAt(Convert.ToInt32(index));
+                OptBtn.RemoveAt(Convert.ToInt32(index));
             }
         }
 
@@ -143,7 +189,7 @@ namespace trelloclone
             if (result == DialogResult.Yes)
             {
                 TableSpace.Controls.Remove(Buttons[Convert.ToInt32(btn.Tag)]);
-                TableSpace.Controls.Remove(OtpBtn[Convert.ToInt32(btn.Tag)]);
+                TableSpace.Controls.Remove(OptBtn[Convert.ToInt32(btn.Tag)]);
                 Update_Location_After_Remove(Convert.ToInt32(btn.Tag));
             }
             MainForm.Controls.Remove(btn);

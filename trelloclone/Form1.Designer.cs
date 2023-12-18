@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using Guna.UI2.WinForms;
+using System.Windows.Forms;
 using ui;
 
 namespace trelloclone
@@ -37,12 +38,12 @@ namespace trelloclone
             this.timerMyTable = new System.Windows.Forms.Timer(this.components);
             this.sizeBar = new System.Windows.Forms.FlowLayoutPanel();
             this.menuPanel = new System.Windows.Forms.Panel();
+            this.myTablePanel = new System.Windows.Forms.Panel();
             this.starBtn = new Guna.UI2.WinForms.Guna2Button();
             this.calendarBtn = new Guna.UI2.WinForms.Guna2Button();
             this.alarmBtn = new Guna.UI2.WinForms.Guna2Button();
-            this.iconButton = new ui.RJButton();
-            this.myTablePanel = new System.Windows.Forms.Panel();
-            this.myTableButton = new ui.RJButton();
+            this.iconButton = new Guna.UI2.WinForms.Guna2Button();
+            this.myTableButton = new Guna.UI2.WinForms.Guna2Button();
             this.sizeBar.SuspendLayout();
             this.menuPanel.SuspendLayout();
             this.myTablePanel.SuspendLayout();
@@ -101,6 +102,16 @@ namespace trelloclone
             this.menuPanel.Size = new System.Drawing.Size(70, 1000);
             this.menuPanel.TabIndex = 1;
             // 
+            // myTablePanel
+            // 
+            this.myTablePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(85)))), ((int)(((byte)(186)))));
+            this.myTablePanel.Controls.Add(this.myTableButton);
+            this.myTablePanel.Location = new System.Drawing.Point(70, 0);
+            this.myTablePanel.Margin = new System.Windows.Forms.Padding(0);
+            this.myTablePanel.Name = "myTablePanel";
+            this.myTablePanel.Size = new System.Drawing.Size(230, 800);
+            this.myTablePanel.TabIndex = 1;
+            // 
             // starBtn
             // 
             this.starBtn.BackColor = System.Drawing.Color.Transparent;
@@ -145,56 +156,34 @@ namespace trelloclone
             // 
             // iconButton
             // 
-            this.iconButton.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.iconButton.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.iconButton.BackColor = System.Drawing.Color.Transparent;
             this.iconButton.BackgroundImage = global::trelloclone.Properties.Resources.icon;
             this.iconButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.iconButton.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.iconButton.BorderRadius = 15;
-            this.iconButton.BorderSize = 0;
-            this.iconButton.FlatAppearance.BorderSize = 0;
-            this.iconButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton.FillColor = System.Drawing.Color.Transparent;
+            this.iconButton.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.iconButton.ForeColor = System.Drawing.Color.White;
             this.iconButton.Location = new System.Drawing.Point(10, 0);
             this.iconButton.Name = "iconButton";
             this.iconButton.Size = new System.Drawing.Size(50, 50);
             this.iconButton.TabIndex = 0;
-            this.iconButton.TextColor = System.Drawing.Color.White;
-            this.iconButton.UseVisualStyleBackColor = false;
-            // 
-            // myTablePanel
-            // 
-            this.myTablePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(85)))), ((int)(((byte)(186)))));
-            this.myTablePanel.Controls.Add(this.myTableButton);
-            this.myTablePanel.Location = new System.Drawing.Point(70, 0);
-            this.myTablePanel.Margin = new System.Windows.Forms.Padding(0);
-            this.myTablePanel.Name = "myTablePanel";
-            this.myTablePanel.Size = new System.Drawing.Size(230, 800);
-            this.myTablePanel.TabIndex = 1;
             // 
             // myTableButton
             // 
             this.myTableButton.BackColor = System.Drawing.Color.Transparent;
-            this.myTableButton.BackgroundColor = System.Drawing.Color.Transparent;
             this.myTableButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.myTableButton.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.myTableButton.BorderRadius = 0;
-            this.myTableButton.BorderSize = 0;
-            this.myTableButton.FlatAppearance.BorderSize = 0;
-            this.myTableButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.myTableButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.myTableButton.ForeColor = System.Drawing.Color.White;
             this.myTableButton.Image = global::trelloclone.Properties.Resources.cross;
-            this.myTableButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.myTableButton.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.myTableButton.Location = new System.Drawing.Point(0, 0);
             this.myTableButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.myTableButton.Name = "myTableButton";
             this.myTableButton.Size = new System.Drawing.Size(230, 50);
             this.myTableButton.TabIndex = 0;
             this.myTableButton.Text = "Các bảng của bạn\r\n";
-            this.myTableButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.myTableButton.TextColor = System.Drawing.Color.White;
-            this.myTableButton.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
@@ -218,12 +207,12 @@ namespace trelloclone
 
         private Panel panel1;
         private Panel WorkSpacePanel;
-        private RJButton myTableButton;
+        private Guna2Button myTableButton;
         private System.Windows.Forms.Timer timerMyTable;
         private FlowLayoutPanel sizeBar;
         private Panel menuPanel;
         private Panel myTablePanel;
-        private RJButton iconButton;
+        private Guna2Button iconButton;
         private Guna.UI2.WinForms.Guna2Button alarmBtn;
         private Guna.UI2.WinForms.Guna2Button calendarBtn;
         private Guna.UI2.WinForms.Guna2Button starBtn;

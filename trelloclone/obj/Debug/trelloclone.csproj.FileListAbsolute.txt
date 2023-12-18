@@ -102,3 +102,4 @@ C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\trello\trelloclone\bin\
 C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\trello\trelloclone\bin\Debug\DTO.dll
 C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\trello\trelloclone\bin\Debug\BLL.pdb
 C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\trello\trelloclone\bin\Debug\DTO.pdb
+C:\Users\Admin\OneDrive\Desktop\năm 3\Software engineer\trello\trelloclone\obj\Debug\trelloclone.Login.resources
