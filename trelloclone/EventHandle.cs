@@ -1,6 +1,7 @@
 ﻿using Guna.UI2.WinForms;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -24,7 +25,9 @@ namespace trelloclone
         private List<Guna2Button> optBtn;
         private List<Guna2Button> markBtns;
         public Guna2Button myTableButton;
-        private Panel textBoxPanel;
+        private Guna2GradientButton deleteTableButton;
+        private bool dltIsExist = false;
+        private List<Guna2PictureBox> colorOfTables;
         //MenuSpace
         private Timer sideBarTimer;
         private FlowLayoutPanel sideBar;
@@ -40,6 +43,8 @@ namespace trelloclone
         public List<Guna2Button> OptBtn { get => optBtn; set => optBtn = value; }
         public Form1 MainForm { get => mainForm; set => mainForm = value; }
         public List<Guna2Button> MarkBtns { get => markBtns; set => markBtns = value; }
+        public Guna2GradientButton DeleteTableButton { get => deleteTableButton; set => deleteTableButton = value; }
+        public List<Guna2PictureBox> ColorOfTables { get => colorOfTables; set => colorOfTables = value; }
 
         public EventHandlers(Form1 form, Panel WorkSpace, Panel TableSpace, Guna2Button myTableButton, Timer timer, FlowLayoutPanel sideBar, Guna2Button iconButton)
         {
@@ -53,6 +58,7 @@ namespace trelloclone
             Buttons = new List<Guna2Button>();
             OptBtn = new List<Guna2Button>();
             MarkBtns = new List<Guna2Button>();
+            ColorOfTables = new List<Guna2PictureBox>();
             //MenuSpace
             this.sideBarTimer = timer;
             this.sideBarTimer.Interval = 1;
@@ -126,10 +132,12 @@ namespace trelloclone
                 {
                     OptBtn[i].Visible = false;
                     MarkBtns[i].Visible = false;
+                    ColorOfTables[i].Visible = false;
                 }
             }    
             OptBtn[Convert.ToInt32(btn.Tag)].Visible = true;
             MarkBtns[Convert.ToInt32(btn.Tag)].Visible = true;
+            ColorOfTables[Convert.ToInt32(btn.Tag)].Visible = true;
         }
 
         public void MarkBtn_Click(object sender, EventArgs e)
@@ -148,17 +156,27 @@ namespace trelloclone
         public void OptBtn_Click(object sender, EventArgs e)
         {
             Guna2Button btn = (Guna2Button)sender;
-            Guna2GradientButton deleteTableButton = new Guna2GradientButton()
+            if (dltIsExist == false)
             {
-                Text = "Delete Table",
-                Location = new Point(btn.Location.X, btn.Location.Y + btn.Height + 55),
-                BorderRadius = 10,
-                BackColor = Color.Transparent,
-                Tag = btn.Tag,
-            };
-            MainForm.Controls.Add(deleteTableButton);
-            deleteTableButton.BringToFront();
-            deleteTableButton.Click += DeleteTableButton_Click;
+                DeleteTableButton = new Guna2GradientButton()
+                {
+                    Text = "Delete Table",
+                    Location = new Point(btn.Location.X, btn.Location.Y + btn.Height + 55),
+                    BorderRadius = 10,
+                    BackColor = Color.Transparent,
+                    Tag = btn.Tag,
+                };
+                MainForm.Controls.Add(DeleteTableButton);
+                DeleteTableButton.BringToFront();
+                DeleteTableButton.Click += DeleteTableButton_Click;
+                dltIsExist = true;
+            }
+            else
+            {
+                MainForm.Controls.Remove(DeleteTableButton);
+                dltIsExist = false;
+            }
+
         }
 
         private void Update_Location_After_Remove(int index)
@@ -167,6 +185,7 @@ namespace trelloclone
             {
                 Buttons.RemoveAt(Convert.ToInt32(index));
                 OptBtn.RemoveAt(Convert.ToInt32(index));
+                MarkBtns.RemoveAt(Convert.ToInt32(index));
             }    
             else 
             {
@@ -176,9 +195,12 @@ namespace trelloclone
                     Buttons[i].Tag = Buttons[i - 1].Tag;
                     OptBtn[i].Location = OptBtn[i - 1].Location;
                     OptBtn[i].Tag = OptBtn[i - 1].Tag;
+                    MarkBtns[i].Location = MarkBtns[i - 1].Location;
+                    MarkBtns[i].Tag = MarkBtns[i - 1].Tag;
                 }
                 Buttons.RemoveAt(Convert.ToInt32(index));
                 OptBtn.RemoveAt(Convert.ToInt32(index));
+                MarkBtns.RemoveAt(Convert.ToInt32(index));
             }
         }
 
@@ -190,6 +212,7 @@ namespace trelloclone
             {
                 TableSpace.Controls.Remove(Buttons[Convert.ToInt32(btn.Tag)]);
                 TableSpace.Controls.Remove(OptBtn[Convert.ToInt32(btn.Tag)]);
+                TableSpace.Controls.Remove(MarkBtns[Convert.ToInt32(btn.Tag)]);
                 Update_Location_After_Remove(Convert.ToInt32(btn.Tag));
             }
             MainForm.Controls.Remove(btn);

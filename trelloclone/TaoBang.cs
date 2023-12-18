@@ -20,6 +20,7 @@ namespace trelloclone
         Table table = new Table();
         EventHandlers eventHandlers;
         private List<InsideTable> listOfTableSpace = new List<InsideTable>();
+        private Color tempColorTable;
         public TaoBang(EventHandlers eventHandlers)
         {
             InitializeComponent();
@@ -64,6 +65,19 @@ namespace trelloclone
                 eventHandlers.TableSpace.Controls.Add(newButton);
                 newButton.Click += eventHandlers.NewButton_Click;
 
+                //Color
+                Guna2PictureBox colorTable = new Guna2PictureBox()
+                {
+                    Width = 20,
+                    Height = 20,
+                    Location = new Point(newButton.Location.X + 10, newButton.Location.Y + 10),
+                    FillColor = tempColorTable,
+                    Visible = false,
+                    Tag = newButton.Tag
+                };
+                eventHandlers.TableSpace.Controls.Add(colorTable);
+                colorTable.BringToFront();
+
                 //Mark Button
                 Guna2Button markBtn = new Guna2Button() {
                     Width = 20,
@@ -103,7 +117,7 @@ namespace trelloclone
                 eventHandlers.Buttons.Add(newButton); //Nhet button Table vua tao vao trong mang de quan ly
                 eventHandlers.OptBtn.Add(optBtn);
                 eventHandlers.MarkBtns.Add(markBtn);
-
+                eventHandlers.ColorOfTables.Add(colorTable);
                 this.Hide(); //Tao xong thi form nay se bi an di
 
 
@@ -116,8 +130,31 @@ namespace trelloclone
         {
             InsideTable Table1 = new InsideTable(eventHandlers.MainForm, eventHandlers.WorkSpace, eventHandlers.TableSpace);
 
-
             return Table1;
+        }
+
+        private void blueButton_Click(object sender, EventArgs e)
+        {
+            Guna2Button btn = (Guna2Button)sender;
+            tempColorTable = btn.FillColor;
+        }
+
+        private void purpleButton_Click(object sender, EventArgs e)
+        {
+            Guna2Button btn = (Guna2Button)sender;
+            tempColorTable = btn.FillColor;
+        }
+
+        private void pinkButton_Click(object sender, EventArgs e)
+        {
+            Guna2Button btn = (Guna2Button)sender;
+            tempColorTable = btn.FillColor;
+        }
+
+        private void redButton_Click(object sender, EventArgs e)
+        {
+            Guna2Button btn = (Guna2Button)sender;
+            tempColorTable = btn.FillColor;
         }
     }
 }
