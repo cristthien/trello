@@ -62,6 +62,7 @@ namespace trelloclone
                     newButton.Location = new Point(eventHandlers.Buttons[lastIndex].Location.X, eventHandlers.Buttons[lastIndex].Location.Y + eventHandlers.Buttons[lastIndex].Height);
                 }
                 eventHandlers.TableSpace.Controls.Add(newButton);
+                newButton.Click += eventHandlers.NewButton_Click;
 
                 //Mark Button
                 Guna2Button markBtn = new Guna2Button() {
@@ -73,6 +74,7 @@ namespace trelloclone
                     BackgroundImage = Image.FromFile(Application.StartupPath + "/Resources/star_empty.png"),
                     BackgroundImageLayout = ImageLayout.Stretch,
                     FillColor = Color.Transparent,
+                    Visible = false,
                     Tag = newButton.Tag
                 };
                 eventHandlers.TableSpace.Controls.Add(markBtn);
@@ -91,6 +93,7 @@ namespace trelloclone
                     BackgroundImage = Image.FromFile(Application.StartupPath + "/Resources/....png"),
                     BackgroundImageLayout = ImageLayout.Stretch,
                     FillColor = Color.Transparent,
+                    Visible = false,
                     Tag = newButton.Tag
                 };
                 optBtn.Click += eventHandlers.OptBtn_Click;
@@ -98,11 +101,8 @@ namespace trelloclone
                 optBtn.BringToFront();
                 eventHandlers.WorkSpace.Controls.Remove(textBoxPanel);
                 eventHandlers.Buttons.Add(newButton); //Nhet button Table vua tao vao trong mang de quan ly
-                eventHandlers.OtpBtn.Add(optBtn);
+                eventHandlers.OptBtn.Add(optBtn);
                 eventHandlers.MarkBtns.Add(markBtn);
-                
-
-
 
                 this.Hide(); //Tao xong thi form nay se bi an di
 
