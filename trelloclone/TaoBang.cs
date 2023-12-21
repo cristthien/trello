@@ -20,7 +20,7 @@ namespace trelloclone
         Table table = new Table();
         EventHandlers eventHandlers;
         private List<InsideTable> listOfTableSpace = new List<InsideTable>();
-        private Color tempColorTable;
+        public Color tempColorTable;
         public TaoBang(EventHandlers eventHandlers)
         {
             InitializeComponent();
@@ -39,6 +39,7 @@ namespace trelloclone
             if (getName == "require_Name")
             {
                 MessageBox.Show("Tên bảng không được để trống");
+                return;
             }
             else
             {
@@ -64,66 +65,16 @@ namespace trelloclone
                 }
                 eventHandlers.TableSpace.Controls.Add(newButton);
                 newButton.Click += eventHandlers.NewButton_Click;
-
-                //Color
-                Guna2PictureBox colorTable = new Guna2PictureBox()
-                {
-                    Width = 20,
-                    Height = 20,
-                    Location = new Point(newButton.Location.X + 10, newButton.Location.Y + 10),
-                    FillColor = tempColorTable,
-                    Visible = false,
-                    Tag = newButton.Tag
-                };
-                eventHandlers.TableSpace.Controls.Add(colorTable);
-                colorTable.BringToFront();
-
-                //Mark Button
-                Guna2Button markBtn = new Guna2Button() {
-                    Width = 20,
-                    Height = 15,
-                    BorderRadius = 10,
-                    Location = new Point(newButton.Location.X + newButton.Width - 25, newButton.Location.Y + 10),
-                    BackColor = Color.Transparent,
-                    BackgroundImage = Image.FromFile(Application.StartupPath + "/Resources/star_empty.png"),
-                    BackgroundImageLayout = ImageLayout.Stretch,
-                    FillColor = Color.Transparent,
-                    Visible = false,
-                    Tag = newButton.Tag
-                };
-                eventHandlers.TableSpace.Controls.Add(markBtn);
-                markBtn.BringToFront();
-                markBtn.Click += eventHandlers.MarkBtn_Click;
-
-
-                //Option button
-                Guna2Button optBtn = new Guna2Button()
-                {
-                    Width = 20,
-                    Height = 15,
-                    BorderRadius = 10,
-                    Location = new Point(markBtn.Location.X - markBtn.Width - 5, markBtn.Location.Y),
-                    BackColor = Color.Transparent,
-                    BackgroundImage = Image.FromFile(Application.StartupPath + "/Resources/....png"),
-                    BackgroundImageLayout = ImageLayout.Stretch,
-                    FillColor = Color.Transparent,
-                    Visible = false,
-                    Tag = newButton.Tag
-                };
-                optBtn.Click += eventHandlers.OptBtn_Click;
-                eventHandlers.TableSpace.Controls.Add(optBtn);
-                optBtn.BringToFront();
-                eventHandlers.WorkSpace.Controls.Remove(textBoxPanel);
                 eventHandlers.Buttons.Add(newButton); //Nhet button Table vua tao vao trong mang de quan ly
-                eventHandlers.OptBtn.Add(optBtn);
-                eventHandlers.MarkBtns.Add(markBtn);
-                eventHandlers.ColorOfTables.Add(colorTable);
+
+                eventHandlers.CreateFunctionTable(newButton);
                 this.Hide(); //Tao xong thi form nay se bi an di
 
 
                 InsideTable createdTable = getTable(sender, e);
                 listOfTableSpace.Add(createdTable);
             }
+
         }
 
         private InsideTable getTable(object sender, EventArgs e)
@@ -156,5 +107,7 @@ namespace trelloclone
             Guna2Button btn = (Guna2Button)sender;
             tempColorTable = btn.FillColor;
         }
+
+
     }
 }
