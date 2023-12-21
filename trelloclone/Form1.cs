@@ -18,14 +18,15 @@ namespace trelloclone
        // List<Guna2Button> listOfBtn = new List<Guna2Button>();
         
         
-
+        public TaoBang TaoBang { get; set; }
         public EventHandlers EventHandlers { get => eventHandlers; set => eventHandlers = value; }
         public Form1()
         {
             InitializeComponent();
             sizeBar.Anchor = AnchorStyles.Left | AnchorStyles.Top;
-            EventHandlers = new EventHandlers(this, WorkSpacePanel, myTablePanel, myTableButton, timerMyTable, sizeBar, iconButton);
-            //listOfBtn.Add(btnStoryCard1_List1);
+            EventHandlers = new EventHandlers(this, WorkSpacePanel, myTablePanel, myTableButton, timerMyTable, sizeBar, iconButton, TaoBang);
+            WindowState = FormWindowState.Maximized;
+
         }
 
         private void btnAddNewCard_Click(object sender, EventArgs e)
@@ -37,5 +38,6 @@ namespace trelloclone
         {
 
         }
+
     }
 }

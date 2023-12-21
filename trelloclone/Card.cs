@@ -16,8 +16,14 @@ namespace WindowsFormsApp1
     public partial class Card : Form
     {
         private AppData appData;
-        private bool modified = false;
+        private bool modified;
         private bool existed;
+        private bool moveToLeft;
+        private bool moveToRight;
+        private bool moveUp;
+        private bool moveDown;
+        private bool copyCard;
+        Guna2Panel pnlMovingFunction = new Guna2Panel();
 
         bool isResize1 = true;
         bool isResize2 = true;
@@ -32,6 +38,10 @@ namespace WindowsFormsApp1
         internal AppData AppData { get => appData; set => appData = value; }
         public bool Modified { get => modified; set => modified = value; }
         public bool Existed { get => existed; set => existed = value; }
+        public bool MoveToLeft { get => moveToLeft; set => moveToLeft = value; }
+        public bool MoveToRight { get => moveToRight; set => moveToRight = value; }
+        public bool MoveUp { get => moveUp; set => moveUp = value; }
+        public bool MoveDown { get => moveDown; set => moveDown = value; }
 
         public Card(AppData passInData)
         {
@@ -41,7 +51,7 @@ namespace WindowsFormsApp1
             tbxThemMoTaChiTiet.Text = passInData.DescribeContent;
             tbxVietBinhLuan.Text = passInData.ActivityContent;
             existed = true;
-
+            pnlMovingFunction.Visible = false;
 
             rTxtBxTitle.TextChanged += richTextBox1_TextChanged;
             tbxThemMoTaChiTiet.MouseClick += tbxThemMoTaChiTiet_MouseClick;
@@ -49,15 +59,21 @@ namespace WindowsFormsApp1
             tbxVietBinhLuan.MouseClick += tbxVietBinhLuan_MouseClick;
             tbxVietBinhLuan.TextChanged += tbxVietBinhLuan_TextChanged;
             pnlMain.MouseDown += panel1_MouseDown;
-            // btnDeleteCard.Click += btnDeleteCard_Click;
 
             Modified = true;
+            moveToLeft = false;
+            moveToRight = false;
+            moveUp = false;
+            moveDown = false;
+
+            copyCard = false;
         }
         private void btnDeleteCard_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Bye");
+            ;
             existed = false;
             appData.Existed = false;
+            this.Visible = false;
         }
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
@@ -66,7 +82,7 @@ namespace WindowsFormsApp1
 
         private void tbxThemMoTaChiTiet_TextChanged(object sender, EventArgs e)
         {
-            AppData.DescribeContent = tbxVietBinhLuan.Text;
+            AppData.DescribeContent = tbxThemMoTaChiTiet.Text;
         }
 
         private void tbxVietBinhLuan_TextChanged(object sender, EventArgs e)
@@ -85,8 +101,6 @@ namespace WindowsFormsApp1
 
         private void tbxThemMoTaChiTiet_MouseClick(object sender, MouseEventArgs e)
         {
-            // tbxThemMoTaChiTiet.Text = AppData.DescribeContent;
-
             originalSizeOf_tbxThemMoTaChiTiet = new System.Drawing.Size(tbxThemMoTaChiTiet.Width, tbxThemMoTaChiTiet.Height);
             originalSizeOf_pnl_MoTa = new System.Drawing.Size(pnlMoTa.Width, pnlMoTa.Height);
             originalPointOf_pnl_HoatDong = new System.Drawing.Point(pnlHoatDong.Location.X, pnlHoatDong.Location.Y);
@@ -97,8 +111,6 @@ namespace WindowsFormsApp1
 
         private void tbxVietBinhLuan_MouseClick(object sender, MouseEventArgs e)
         {
-            // tbxVietBinhLuan.Text = AppData.ActivityContent;
-
             originalSizeOf_tbxVietBinhLuan = new System.Drawing.Size(tbxVietBinhLuan.Width, tbxVietBinhLuan.Height);
             originalSizeOf_pnl_HoatDong = new System.Drawing.Size(pnlHoatDong.Width, pnlHoatDong.Height);
             onSizeBox2 = true;
@@ -141,7 +153,155 @@ namespace WindowsFormsApp1
             }
         }
 
+        private void btnDiChuyen_Click(object sender, EventArgs e)
+        {
+            if (pnlMovingFunction.Visible == true)
+            {
+                pnlMovingFunction.Visible = false;
+                btnSaoChep.Location = new Point(btnSaoChep.Location.X - 110,
+                    btnSaoChep.Location.Y);
+                btnTaoMau.Location = new Point(btnTaoMau.Location.X - 110,
+                    btnTaoMau.Location.Y);
+            }
+            else
+            {
+                btnSaoChep.Location = new Point(btnSaoChep.Location.X + 110,
+                    btnSaoChep.Location.Y);
+                btnTaoMau.Location = new Point(btnTaoMau.Location.X + 110,
+                    btnTaoMau.Location.Y);
+                pnlMovingFunction.Visible = true;
 
+                pnlMovingFunction.BorderRadius = 5;
+                //pnlMovingFunction.FillColor = Color.FromArgb(224, 224, 224);
+                pnlMovingFunction.FillColor = Color.Transparent;
+                pnlFunctions.Controls.Add(pnlMovingFunction);
+                pnlMovingFunction.Size = new Size(90, 90);
+                pnlMovingFunction.Location = new Point(215, 75);
+                pnlMovingFunction.BorderColor = Color.Black;
+
+                Guna2Button btnToLeft = new Guna2Button();
+                Guna2Button btnToRight = new Guna2Button();
+                Guna2Button btnGoUp = new Guna2Button();
+                Guna2Button btnGoDown = new Guna2Button();
+
+                pnlMovingFunction.Controls.Add(btnToLeft);
+                pnlMovingFunction.Controls.Add(btnToRight);
+                pnlMovingFunction.Controls.Add(btnGoDown);
+                pnlMovingFunction.Controls.Add(btnGoUp);
+
+                btnToLeft = createBtnToMove(btnToLeft, "Qua trái", Application.StartupPath +
+                    "/Resources/backArrow.png");
+                btnToRight = createBtnToMove(btnToRight, "Qua phải", Application.StartupPath +
+                    "/Resources/forwardArrow.png");
+                btnGoUp = createBtnToMove(btnGoUp, "Đi lên", Application.StartupPath +
+                    "/Resources/upArrow.png");
+                btnGoDown = createBtnToMove(btnGoDown, "Đi xuống", Application.StartupPath +
+                    "/Resources/downArrow.png");
+
+                //moving 2 button below
+                btnToLeft.Click += BtnToLeft_Click;
+                btnToRight.Click += BtnToRight_Click;
+                btnGoUp.Click += BtnGoUp_Click;
+                btnGoDown.Click += BtnGoDown_Click;
+
+            }
+        }
+        private void BtnToLeft_Click(object sender, EventArgs e)
+        {
+            moveToLeft = true;
+            pnlMovingFunction.Visible = false;
+            btnSaoChep.Location = new Point(btnSaoChep.Location.X - 110,
+                btnSaoChep.Location.Y);
+            btnTaoMau.Location = new Point(btnTaoMau.Location.X - 110,
+                btnTaoMau.Location.Y);
+            this.Visible = false;
+        }
+        private void BtnToRight_Click(object sender, EventArgs e)
+        {
+            moveToRight = true;
+            pnlMovingFunction.Visible = false;
+            btnSaoChep.Location = new Point(btnSaoChep.Location.X - 110,
+                btnSaoChep.Location.Y);
+            btnTaoMau.Location = new Point(btnTaoMau.Location.X - 110,
+                btnTaoMau.Location.Y);
+            this.Visible = false;
+        }
+        private void BtnGoUp_Click(object sender, EventArgs e)
+        {
+            moveUp = true;
+            pnlMovingFunction.Visible = false;
+            btnSaoChep.Location = new Point(btnSaoChep.Location.X - 110,
+                btnSaoChep.Location.Y);
+            btnTaoMau.Location = new Point(btnTaoMau.Location.X - 110,
+                btnTaoMau.Location.Y);
+            this.Visible = false;
+        }
+        private void BtnGoDown_Click(object sender, EventArgs e)
+        {
+            moveDown = true;
+            pnlMovingFunction.Visible = false;
+            btnSaoChep.Location = new Point(btnSaoChep.Location.X - 110,
+                btnSaoChep.Location.Y);
+            btnTaoMau.Location = new Point(btnTaoMau.Location.X - 110,
+                btnTaoMau.Location.Y);
+            this.Visible = false;
+        }
+        private Guna2Button createBtnToMove(Guna2Button btn, string btnName, string ImagePath)
+        {
+            btn.Size = new Size(80, 20);
+            btn.BorderRadius = 5;
+            btn.FillColor = Color.FromArgb(224, 224, 224);
+            btn.ImageAlign = HorizontalAlignment.Left;
+            btn.Image = Image.FromFile(ImagePath);
+            if (btnName == "Qua trái")
+            {
+                btn.Location = new Point(7, 0);
+                btn.ImageSize = new Size(10, 10);
+                btn.ImageOffset = new Point(-3, btn.ImageOffset.Y);
+            }
+            else if (btnName == "Qua phải")
+            {
+                btn.Location = new Point(7, 23);
+                btn.ImageSize = new Size(10, 10);
+                btn.ImageOffset = new Point(-6, btn.ImageOffset.Y);
+                btn.TextAlign = HorizontalAlignment.Left;
+                btn.TextOffset = new Point(-10, btn.TextOffset.Y);
+            }
+            else if (btnName == "Đi lên")
+            {
+                btn.Location = new Point(7, 46);
+                btn.ImageSize = new Size(14, 14);
+                btn.ImageOffset = new Point(-9, btn.ImageOffset.Y);
+            }
+            else if (btnName == "Đi xuống")
+            {
+                btn.Location = new Point(7, 69);
+                btn.ImageSize = new Size(14, 14);
+                btn.ImageOffset = new Point(-11, btn.ImageOffset.Y);
+            }
+            btn.Text = btnName;
+            btn.ForeColor = Color.Black;
+            return btn;
+        }
+
+        private void pnlFunctions_Click(object sender, EventArgs e)
+        {
+
+            if (pnlMovingFunction.Visible == true)
+            {
+                pnlMovingFunction.Visible = false;
+                btnSaoChep.Location = new Point(btnSaoChep.Location.X - 110,
+                    btnSaoChep.Location.Y);
+                btnTaoMau.Location = new Point(btnTaoMau.Location.X - 110,
+                    btnTaoMau.Location.Y);
+            }
+        }
+
+        private void btnSaoChep_Click(object sender, EventArgs e)
+        {
+            copyCard = true;
+            this.Visible = false;
+        }
 
         void resize_textBox(bool txtThemMoTaChiTiet, bool txtVietBinhLuan, bool expand, bool shrink)
         {
@@ -193,8 +353,6 @@ namespace WindowsFormsApp1
                 foreach (string line in lines)
                     outputFile.WriteLine(line);
             }
-
-            //Console.WriteLine("File saved to: " + Path.Combine(currentDirectory, $"StoryCard.txt"));
         }
 
     }

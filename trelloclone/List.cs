@@ -9,10 +9,8 @@ using System.Windows.Forms;
 
 namespace trelloclone
 {
-    internal class list : Panel
+    internal class list : Guna2Panel
     {
-        static int numberOfList = 0;
-        static List<list> listOfList = new List<list>();
         private List<Guna2Button> listOfBtn = new List<Guna2Button>();
         private List<AppData> listOfData = new List<AppData>();
         private List<bool> listOfmodifiedData = new List<bool>();
@@ -21,11 +19,9 @@ namespace trelloclone
         private Guna2Button btnDeleteList;
         private Guna2Button btnMoveToLeft;
         private Guna2Button btnMoveToRight;
-        private Panel pnlCurrentList;
-        private TextBox txtBxTitle;
+        private Guna2Panel pnlCurrentList;
+        private Guna2TextBox txtBxTitle;
 
-        public static int NumberOfList { get => numberOfList; set => numberOfList = value; }
-        internal static List<list> ListOfList { get => listOfList; set => listOfList = value; }
         public List<Guna2Button> ListOfBtn { get => listOfBtn; set => listOfBtn = value; }
         internal List<AppData> ListOfData { get => listOfData; set => listOfData = value; }
         public List<bool> ListOfModifiedData { get => listOfmodifiedData; set => listOfmodifiedData = value; }
@@ -34,13 +30,12 @@ namespace trelloclone
         public Guna2Button BtnDeleteList { get => btnDeleteList; set => btnDeleteList = value; }
         public Guna2Button BtnMoveToLeft { get => btnMoveToLeft; set => btnMoveToLeft = value; }
         public Guna2Button BtnMoveToRight { get => btnMoveToRight; set => btnMoveToRight = value; }
-        public Panel PnlCurrentList { get => pnlCurrentList; set => pnlCurrentList = value; }
-        public TextBox TxtBxTitle { get => txtBxTitle; set => txtBxTitle = value; }
+        public Guna2Panel PnlCurrentList { get => pnlCurrentList; set => pnlCurrentList = value; }
+        public Guna2TextBox TxtBxTitle { get => txtBxTitle; set => txtBxTitle = value; }
 
-        public list(Panel pnlAllList)
+        public list(Guna2Panel pnlAllList, List<list> listOfDanhSach)
         {
-            NumberOfList += 1;
-            PnlCurrentList = createCurrentList(pnlAllList);
+            PnlCurrentList = createCurrentList(pnlAllList, listOfDanhSach);
             TxtBxTitle = createTitle(PnlCurrentList);
             TxtBxTitle.Tag = this;
             BtnFirstCard = createFirstCard(PnlCurrentList);
@@ -54,76 +49,71 @@ namespace trelloclone
             BtnMoveToRight.Tag = this;
         }
 
-        private TextBox createTitle(Panel pnlCurrentList)
+        public Guna2Panel createCurrentList(Guna2Panel pnlAllList, List<list> listOfDanhSach)
         {
-            txtBxTitle = new TextBox();
-            pnlCurrentList.Controls.Add(txtBxTitle);
+            pnlAllList.Controls.Add(this); //Add panel for list
+            this.Size = new Size(260, 110);
+            this.FillColor = Color.White;
+            this.BorderRadius = 5;
 
+            if (listOfDanhSach.Count == 0)
+                this.Location = new Point(180, 50);
+            else
+            {
+                this.Location = new Point(listOfDanhSach[listOfDanhSach.Count - 1].Location.X +
+                   listOfDanhSach[listOfDanhSach.Count - 1].Size.Width + 10, 50);
+            }
+
+            this.BackColor = Color.Transparent;
+
+            return this;
+        }
+        private Guna2TextBox createTitle(Guna2Panel pnlCurrentList)
+        {
+            txtBxTitle = new Guna2TextBox();
+            pnlCurrentList.Controls.Add(txtBxTitle);
             txtBxTitle.Location = new Point(9, 10);
-            txtBxTitle.Size = new Size(100, 50);
+            txtBxTitle.Size = new Size(200, 15);
             txtBxTitle.Text = "Danh sách mới";
             txtBxTitle.TextAlign = HorizontalAlignment.Left;
-            txtBxTitle.BorderStyle = BorderStyle.None;
+            txtBxTitle.BorderThickness = 0;
             txtBxTitle.Font = new Font("Segoe UI", 10);
+            txtBxTitle.ForeColor = Color.Black;
 
             return txtBxTitle;
         }
 
-        private Guna2Button createBtnMoveLeft(Panel pnlCurrentList)
+        private Guna2Button createBtnMoveLeft(Guna2Panel pnlCurrentList)
         {
             BtnMoveToLeft = new Guna2Button();
             pnlCurrentList.Controls.Add(BtnMoveToLeft);
             BtnMoveToLeft.BackColor = Color.Transparent;
             BtnMoveToLeft.Location = new Point(230, 10);
             BtnMoveToLeft.Size = new Size(10, 10);
-            //BtnMoveToLeft.Image = Image.FromFile("C:\\Users\\Dell\\source\\repos\\trelloclone\\trelloclone\\Resources\\backArrow.png");
+            BtnMoveToLeft.Image = Image.FromFile(Application.StartupPath + "/Resources/backArrow.png");
             BtnMoveToLeft.ImageSize = new Size(10, 10);
             BtnMoveToLeft.ImageAlign = HorizontalAlignment.Center;
             BtnMoveToLeft.ImageOffset = new Point(1, 0);
-            BtnMoveToLeft.FillColor = Color.FromArgb(224, 224, 224);
-
+            BtnMoveToLeft.FillColor = Color.FromArgb(244, 244, 244);
 
             return BtnMoveToLeft;
         }
-        private Guna2Button createBtnMoveRight(Panel pnlCurrentList)
+        private Guna2Button createBtnMoveRight(Guna2Panel pnlCurrentList)
         {
             BtnMoveToRight = new Guna2Button();
             pnlCurrentList.Controls.Add(BtnMoveToRight);
             BtnMoveToRight.BackColor = Color.Transparent;
             BtnMoveToRight.Location = new Point(243, 10);
             BtnMoveToRight.Size = new Size(10, 10);
-            //BtnMoveToRight.Image = Image.FromFile("C:\\Users\\Dell\\source\\repos\\trelloclone\\trelloclone\\Resources\\forwardArrow.png");
+            BtnMoveToRight.Image = Image.FromFile(Application.StartupPath + "/Resources/forwardArrow.png");
             BtnMoveToRight.ImageSize = new Size(10, 10);
             BtnMoveToRight.ImageAlign = HorizontalAlignment.Center;
-            BtnMoveToRight.FillColor = Color.FromArgb(224, 224, 224);
+            BtnMoveToRight.FillColor = Color.FromArgb(244, 244, 244);
 
             return BtnMoveToRight;
         }
 
-
-        public Panel createCurrentList(Panel pnlAllList)
-        {
-            pnlAllList.Controls.Add(this); //Add panel for list
-            this.Size = new Size(260, 110);
-
-            if (list.ListOfList.Count == 0)
-                this.Location = new Point(200, 50);
-            else
-            {
-                //this.Location = new Point(listOfList[NumberOfList-2].Location.X + 
-                //    listOfList[NumberOfList-2].Size.Width + 10, 50);
-
-                this.Location = new Point(listOfList[list.ListOfList.Count - 1].Location.X +
-                    listOfList[list.ListOfList.Count - 1].Size.Width + 10, 50);
-            }
-
-            this.BackColor = Color.White;
-            ListOfList.Add(this); //Add first list to the LIST of panel
-
-            return this;
-        }
-
-        public Guna2Button createFirstCard(Panel pnlCurrentList)
+        public Guna2Button createFirstCard(Guna2Panel pnlCurrentList)
         {
             Guna2Button btnCard = new Guna2Button();
             pnlCurrentList.Controls.Add(btnCard); //Add the card button for list
@@ -143,7 +133,7 @@ namespace trelloclone
             return btnCard;
         }
 
-        public Guna2Button createOtherCard(Panel pnlCurrentList)
+        public Guna2Button createOtherCard(Guna2Panel pnlCurrentList)
         {
             Guna2Button btnCard_in = new Guna2Button();
             btnCard_in.Location = new Point(listOfBtn[listOfBtn.Count - 1].Location.X,
@@ -167,7 +157,7 @@ namespace trelloclone
             return btnCard_in;
         }
 
-        public Guna2Button modifyAddCard(Panel pnlCurrentList)
+        public Guna2Button modifyAddCard(Guna2Panel pnlCurrentList)
         {
             Guna2Button btnAddNewCard = new Guna2Button();
 
@@ -184,7 +174,7 @@ namespace trelloclone
                 btnAddNewCard.FillColor = Color.FromArgb(224, 224, 224);
                 btnAddNewCard.Size = new Size(90, 20);
                 btnAddNewCard.Location = new Point(5, 80);
-                //btnAddNewCard.Image = Image.FromFile("C:\\Users\\Dell\\source\\repos\\trelloclone\\trelloclone\\Resources\\Add.png");
+                btnAddNewCard.Image = Image.FromFile(Application.StartupPath + "/Resources/Add.png");
                 btnAddNewCard.ImageAlign = HorizontalAlignment.Left;
                 btnAddNewCard.ImageOffset = new Point(-10, 0);
                 btnAddNewCard.Text = "Thêm thẻ";
@@ -192,10 +182,9 @@ namespace trelloclone
                 btnAddNewCard.TextOffset = new Point(-1, 0);
                 this.Controls.Add(btnAddNewCard);
             }
-
             return btnAddNewCard;
         }
-        public Guna2Button modifyDeleteList(Panel pnlCurrentList)
+        public Guna2Button modifyDeleteList(Guna2Panel pnlCurrentList)
         {
             Guna2Button btnRemoveList = new Guna2Button();
 
@@ -210,7 +199,7 @@ namespace trelloclone
                 btnRemoveList.BackColor = Color.White;
                 btnRemoveList.FillColor = Color.FromArgb(224, 224, 224);
                 btnRemoveList.Size = new Size(120, 20);
-                //btnRemoveList.Image = Image.FromFile("C:\\Users\\Dell\\source\\repos\\trelloclone\\trelloclone\\Resources\\delete.png");
+                btnRemoveList.Image = Image.FromFile(Application.StartupPath + "/Resources/delete.png");
                 btnRemoveList.ImageAlign = HorizontalAlignment.Left;
                 btnRemoveList.Location = new Point(133, 80);
                 btnRemoveList.ImageOffset = new Point(-10, 0);
@@ -220,7 +209,6 @@ namespace trelloclone
                 this.Controls.Add(btnRemoveList);
             }
             return btnRemoveList;
-
         }
 
         static public list FindForm(Control control)
@@ -229,7 +217,6 @@ namespace trelloclone
             {
                 control = control.Parent;
             }
-
             return control as list;
         }
         protected override void Dispose(bool disposing)
@@ -238,7 +225,6 @@ namespace trelloclone
         }
         static public void moveCardAfterDelete(list pnlCurrentList, Point deletedLocation)
         {
-
             int i = 0;
             while (i < pnlCurrentList.ListOfBtn.Count)
             {
@@ -251,17 +237,18 @@ namespace trelloclone
             }
             pnlCurrentList.btnAddCard.Location = new Point(pnlCurrentList.btnAddCard.Location.X,
                     pnlCurrentList.btnAddCard.Location.Y - 40);
-            pnlCurrentList.btnDeleteList.Location = new Point(pnlCurrentList.btnDeleteList.Location.Y,
+            pnlCurrentList.btnDeleteList.Location = new Point(pnlCurrentList.btnDeleteList.Location.X,
                 pnlCurrentList.btnDeleteList.Location.Y - 40);
+            pnlCurrentList.Size = new Size(pnlCurrentList.Size.Width, pnlCurrentList.Size.Height - 40);
         }
-        static public void moveListAfterDelete(Point deletedLocation, Size deleteSize)
+        static public void moveListAfterDelete(Point deletedLocation, Size deleteSize, List<list> listOfDanhSach)
         {
             int i = 0;
-            while (i < listOfList.Count)
+            while (i < listOfDanhSach.Count)
             {
-                if (listOfList[i].Location.X > deletedLocation.X)
+                if (listOfDanhSach[i].Location.X > deletedLocation.X)
                 {
-                    listOfList[i].Location = new Point(listOfList[i].Location.X - deleteSize.Width - 10, 50);
+                    listOfDanhSach[i].Location = new Point(listOfDanhSach[i].Location.X - deleteSize.Width - 10, 50);
                 }
                 i++;
             }
